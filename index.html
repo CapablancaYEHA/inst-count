@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="css/counter-git.css">
+    <title></title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+ <!-- <div class="container">
+   <h3>Silva Web Designs has <span id="instagram-followers"></span> Instagram followers.</h3>
+ </div> -->
+<div class="wrapper">
+    <!-- <img src="img/top_line.png" alt=""> -->
+
+    <div class="logo">
+        <img src="img/community_logo.png" alt="" width="360">
+    </div>
+
+    <div class="tablecontainer">
+        <table cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="sportname" style="padding-top: 40px;">
+                    <p>VELOSPORT</p>
+                </td>
+                <td rowspan="2" class="userphoto">
+                    <img src="img/user-1.jpg" alt="">
+                    <p>Ekaterina KORNEEVA</p>
+                </td>
+                <td rowspan="2" class="instlogo">
+                    <img src="img/inst-logo.png" alt="">
+                </td>
+                <td rowspan="2" class="textfollow">
+                    <p class="textpost__number" id="instagram-followers_8">
+
+                    </p>
+                    <p class="textpost__text">
+                         followers
+                    </p>
+                </td>
+                <td rowspan="2" class="textpost">
+                    <p class="textpost__number" id="instagram-latest_8">
+
+                    </p>
+                    <p class="textpost__text">
+                        latest post
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="sportlogo btwin" width="130">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="tablecontainer">
+        <table cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="sportname">
+                    <p>Oxelo Russia</p>
+                </td>
+                <td rowspan="2" class="userphoto">
+                    <img src="img/user-2.jpg" alt="">
+                    <p>Anastasia KURANOVA</p>
+                </td>
+                <td rowspan="2" class="instlogo">
+                    <img src="img/inst-logo.png" alt="">
+                </td>
+                <td rowspan="2" class="textfollow">
+                    <p class="textpost__number" id="instagram-followers_9">
+
+                    </p>
+                    <p class="textpost__text">
+                         followers
+                    </p>
+                </td>
+                <td rowspan="2" class="textpost">
+                    <p class="textpost__number" id="instagram-latest_9">
+
+                    </p>
+                    <p class="textpost__text">
+                        latest post
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="sportlogo oxelo" width="130">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="tablecontainer">
+        <table cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="sportname">
+                    <p>domyos Russia</p>
+                </td>
+                <td rowspan="2" class="userphoto">
+                    <img src="img/user-3.jpg" alt="">
+                    <p>Mikhail LEDVANSKIY</p>
+                </td>
+                <td rowspan="2" class="instlogo">
+                    <img src="img/inst-logo.png" alt="">
+                </td>
+                <td rowspan="2" class="textfollow">
+                    <p class="textpost__number" id="instagram-followers_10">
+
+                    </p>
+                    <p class="textpost__text">
+                         followers
+                    </p>
+                </td>
+                <td rowspan="2" class="textpost">
+                    <p class="textpost__number" id="instagram-latest_10">
+
+                    </p>
+                    <p class="textpost__text">
+                        latest post
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="sportlogo domyos" width="130">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+    <script type="text/javascript">
+
+// Восьмой счетчик
+ var token8 = '3595268611.1677ed0.fe18b3fd89e249f1bb16b0b3ba6a3d54';
+ // Скрипт для взаимодействия с API инстаграмм
+ (function update() {
+ $.ajax({
+   url: 'https://api.instagram.com/v1/users/self',
+   dataType: 'jsonp',
+   type: 'GET',
+   async: true,
+   data: {
+     access_token: token8
+   },
+   success: function(data) {
+     var follows = data['data']['counts']['followed_by'];
+     $("#instagram-followers_8").text(follows);
+   },
+   error: function(data) {
+     console.log(data);
+ }
+ }).then(function() {
+       setTimeout(update, 3600000);
+    });;
+})();
+
+(function update2() {
+$.ajax({
+  url: 'https://api.instagram.com/v1/users/self/media/recent',
+  dataType: 'jsonp',
+  type: 'GET',
+  async: true,
+  data: {
+    access_token: token8,
+    count: 1
+  },
+  success: function(data) {
+      for(x in data.data){
+      var crtTime = data.data[x].caption.created_time;
+      var date = new Date(parseInt(crtTime) * 1000);
+      var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  		"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+			];
+			var month = monthNames[date.getMonth()];
+      var day = date.getDate();
+      var postDate = day +' ' + month;
+			$("#instagram-latest_8").text( postDate );
+
+}
+  },
+  error: function(data) {
+    console.log(data);
+}
+}).then(function() {
+      setTimeout(update2, 3600000);
+   });;
+})();
+// Конец скрипта API Инстаграм
+// Конец восьмого счетчика
+
+// Девятый счетчик
+ var token9 = '4535671790.1677ed0.632a1bbd89e048b3bd3a168c8b294a46';
+ // Скрипт для взаимодействия с API инстаграмм
+ (function update() {
+ $.ajax({
+   url: 'https://api.instagram.com/v1/users/self',
+   dataType: 'jsonp',
+   type: 'GET',
+   async: true,
+   data: {
+     access_token: token9
+   },
+   success: function(data) {
+     var follows = data['data']['counts']['followed_by'];
+     $("#instagram-followers_9").text(follows);
+   },
+   error: function(data) {
+     console.log(data);
+ }
+ }).then(function() {
+       setTimeout(update, 3600000);
+    });;
+})();
+
+(function update2() {
+$.ajax({
+  url: 'https://api.instagram.com/v1/users/self/media/recent',
+  dataType: 'jsonp',
+  type: 'GET',
+  async: true,
+  data: {
+    access_token: token9,
+    count: 1
+  },
+  success: function(data) {
+      for(x in data.data){
+      var crtTime = data.data[x].caption.created_time;
+      var date = new Date(parseInt(crtTime) * 1000);
+      var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  		"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+			];
+			var month = monthNames[date.getMonth()];
+      var day = date.getDate();
+      var postDate = day +' ' + month;
+			$("#instagram-latest_9").text( postDate );
+
+}
+  },
+  error: function(data) {
+    console.log(data);
+}
+}).then(function() {
+      setTimeout(update2, 3600000);
+   });;
+})();
+// Конец скрипта API Инстаграм
+// Конец девятого счетчика
+
+// Десятый счетчик
+ var token10 = '5783800746.1677ed0.a3f534cc6a8c40fa926efdf72ea0a5ee';
+ // Скрипт для взаимодействия с API инстаграмм
+ (function update() {
+ $.ajax({
+   url: 'https://api.instagram.com/v1/users/self',
+   dataType: 'jsonp',
+   type: 'GET',
+   async: true,
+   data: {
+     access_token: token10
+   },
+   success: function(data) {
+     var follows = data['data']['counts']['followed_by'];
+     $("#instagram-followers_10").text(follows);
+   },
+   error: function(data) {
+     console.log(data);
+ }
+ }).then(function() {
+       setTimeout(update, 3600000);
+    });;
+})();
+
+(function update2() {
+$.ajax({
+  url: 'https://api.instagram.com/v1/users/self/media/recent',
+  dataType: 'jsonp',
+  type: 'GET',
+  async: true,
+  data: {
+    access_token: token10,
+    count: 1
+  },
+  success: function(data) {
+      for(x in data.data){
+      var crtTime = data.data[x].caption.created_time;
+      var date = new Date(parseInt(crtTime) * 1000);
+      var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  		"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+			];
+			var month = monthNames[date.getMonth()];
+      var day = date.getDate();
+      var postDate = day +' ' + month;
+			$("#instagram-latest_10").text( postDate );
+
+}
+  },
+  error: function(data) {
+    console.log(data);
+}
+}).then(function() {
+      setTimeout(update2, 3600000);
+   });;
+})();
+// Конец скрипта API Инстаграм
+// Конец десятого счетчика
+
+
+// Скрипт для ротации дивов
+// http://jsfiddle.net/gJUPT/2/
+// Конец для ротации дивов
+
+ </script>
+
+
+</body>
+</html>
+<!-- https://www.instagram.com/silvawebdesigns/ -->
